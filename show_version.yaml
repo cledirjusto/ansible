@@ -1,0 +1,16 @@
+---
+
+- hosts: cisco_routers
+  gather_facts: false
+  connection: network_cli
+#  become_method: enable
+
+  tasks:
+     - name: get version information
+       ios_command:
+               commands: show version
+       register: output1
+
+     - name: print result
+       debug:
+               var: output1.stdout_lines

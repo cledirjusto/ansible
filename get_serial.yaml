@@ -1,0 +1,18 @@
+---
+
+- hosts: cisco_routers
+  gather_facts: no
+  connection: network_cli
+#  become_method: enable
+
+  tasks:
+          - name: Gather facts (ops)
+            ios_facts:
+            when: ansible_network_os == 'ios'
+
+          - name: Display some facts
+            debug:
+                    msg: "Router: {{ ansible_net_hostname }} 
+                          Serial: {{ ansible_net_serialnum }} 
+                          Versão: {{ ansible_net_version }}"
+                     
